@@ -6,6 +6,7 @@ from .forms import LoginForm, RegisterForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout, login
+from django.contrib.auth.decorators import login_required
 
 def register(request):  # sourcery skip: extract-method
     template = 'users/register.html'
@@ -37,21 +38,6 @@ class LoginUserView(LoginView):
         login(self.request, form.get_user())
         messages.success(self.request, 'You were successfully login')
         return HttpResponseRedirect(self.get_success_url())
-    
-def login_user(request):
-    form = LoginForm()
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            messages.success(request, 'You have been loged in successfully')
-            return redirect('jobs:home')
-        else:
-            messages.error(request, 'Authentication failed. Please try again')
-    template = 'users/login.html'
-    context = {
-        'form': form
-    }
-    return render(request, template, context)
 
 def logout_user(request):
     if request.user.is_authenticated:
@@ -59,3 +45,14 @@ def logout_user(request):
         messages.info(request, 'You have been logged out successfully')
 
     return redirect("jobs:home")
+
+def terms(request):
+    template = 'users/terms-and-conditions.html'
+    context = {}
+    return render(request, template, context)
+
+@login_required
+def profile(request):
+    template = 'users/profile.html'
+    context = {}
+    return render(request, template, context)

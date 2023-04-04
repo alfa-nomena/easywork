@@ -129,6 +129,8 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR/ 'uploads'
 MEDIA_URL = '/media/'
 
+LOGIN_URL = "users:login"
+
 MESSAGE_TAGS = {
     messages.DEBUG: "info",
     messages.SUCCESS: 'success',

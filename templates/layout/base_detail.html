@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block breadcrumbs %}
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('{% static 'jobs/images/hero_1.jpg' %}');" id="home-section">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+            <h1 class="text-white font-weight-bold">{% block page_title %}{% endblock page_title %}</h1>
+            <div class="custom-breadcrumbs">
+                {% block page_parent %}
+                {% endblock page_parent %}
+                <span class="text-white"><strong>{% block page_name %}{% endblock page_name %}</strong></span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+  {% endblock breadcrumbs %}

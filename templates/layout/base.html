@@ -94,7 +94,7 @@
                                     <li><a href="{% url 'users:login' %}">Login</a></li>
                                     <li><a href="{% url 'users:register' %}">Register</a></li>
                                 {% endif %}
-                                <li><a href="#">Terms and conditions</a></li>
+                                <li><a href="{% url 'users:terms' %}">Terms and conditions</a></li>
                                 
                             </ul>
                         </li>
@@ -114,7 +114,7 @@
             </div>
         </header>
     {% endblock  %}
-
+    {% block breadcrumbs %}{% endblock breadcrumbs %}
 
     {% block main %}
     {% endblock  %}
