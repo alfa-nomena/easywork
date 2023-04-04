@@ -1,0 +1,1 @@
+$("#messages").fadeIn(2000).delay(10000).fadeOut(1000)

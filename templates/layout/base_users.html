@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% endblock meta %}
+
+    <title>
+        {% block title %}
+            Authentications : 
+        {% endblock title %}
+    </title>
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'users/vendors/mdi/css/materialdesignicons.min.css' %}">
+        <link rel="stylesheet" href="{% static 'users/vendors/css/vendor.bundle.base.css' %}">
+        <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+    {% endblock css %}
+    {% block shortcut_icon %}
+        <link rel="shortcut icon" href="{% static 'users/images/favicon.png' %}" />
+    {% endblock shortcut_icon %}
+  </head>
+  <body>
+    {% block alert %}
+        {% if messages %}
+        <div class='alert alert-info'>
+            {% for message in messages %}
+            <p class="alert alert-{{ message.tags }}"> {{ message }} </p>
+            {% endfor %}
+            </div>
+        {% endif %} 
+    {% endblock alert %}
+    {% block form %}
+        
+    {% endblock form %}
+    {% block scripts %}
+        <script src="{% static 'users/vendors/js/vendor.bundle.base.js' %}"></script>
+        <script src="{% static 'js/off-canvas.js' %}"></script>
+        <script src="{% static 'users/js/hoverable-collapse.js' %}"></script>
+        <script src="{% static 'users/js/misc.js' %}"></script>
+        <script src="{% static 'users/js/settings.js' %}"></script>
+        <script src="{% static 'users/js/todolist.js' %}"></script>
+    {% endblock scripts %}
+    <!-- endinject -->
+  </body>
+</html>

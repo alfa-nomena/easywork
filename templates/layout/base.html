@@ -1,0 +1,210 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{% block title %} ADM Value {% endblock  %}</title>
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% endblock  %}
+
+    {% block base_css %}
+        <link rel="stylesheet" href="{% static 'jobs/css/custom-bs.css' %}">
+        <link rel="stylesheet" href="{% static 'jobs/css/jquery.fancybox.min.css' %}">
+        <link rel="stylesheet" href="{% static 'jobs/css/bootstrap-select.min.css' %}">
+        <link rel="stylesheet" href="{% static 'jobs/fonts/icomoon/style.css' %}">
+        <link rel="stylesheet" href="{% static 'jobs/fonts/line-icons/style.css' %}">
+        <link rel="stylesheet" href="{% static 'jobs/css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'jobs/css/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'jobs/css/quill.snow.css' %}">
+
+    {% endblock  %}
+
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'jobs/css/style.css' %}">    
+        <link rel="stylesheet" href="{% static 'users/css/messages.css' %}">    
+    {% endblock  %}
+  </head>
+
+    <body id="top">
+        {% block loading %}
+            <div id="overlayer"></div>
+            <div class="loader">
+                <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        {% endblock  %}
+    
+    {% block site_wrap %}
+        <div class="site-wrap">
+            <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>    
+    {% endblock  %}
+
+    <!-- NAVBAR -->
+    {% block header %}    
+        <header class="site-navbar mt-3">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    
+                    {% if user.is_authenticated %}
+                        <div class="site-logo col-6">
+                            <a href="{% url 'jobs:home' %}">
+                                <img src="{% static 'jobs/images/adm/adm-logo.png' %}" alt="Logo ADM Value">
+                            </a>
+                        </div>
+                    {% else %}
+                    <div class="site-logo col-6"><a href="{% url 'jobs:home' %}"><img src="{% static 'jobs/images/adm/adm-logo.png' %}" alt="Logo ADM Value"></a></div>    
+                    {% endif %}
+                        
+        
+                    <nav class="mx-auto site-navigation">
+                    <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                        <li><a href="{% url 'jobs:home' %}" class="nav-link">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li class="has-children">
+                            <a href="#">Pages</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Service Single</a></li>
+                                <li><a href="#">Blog Single</a></li>
+                                <li><a href="#">Portfolio</a></li>
+                                <li><a href="#">Portfolio Single</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Frequently Ask Questions</a></li>
+                                <li><a href="#">Gallery</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Contact</a></li>
+                        <li class="has-children">
+                            <a href="#">Settings</a>
+                            <ul class="dropdown">
+                                {% if user.is_authenticated %}
+                                    <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    
+                                {% else %}
+                                    <li><a href="{% url 'users:login' %}">Login</a></li>
+                                    <li><a href="{% url 'users:register' %}">Register</a></li>
+                                {% endif %}
+                                <li><a href="#">Terms and conditions</a></li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                    </nav>
+                    
+                    <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+                    <div class="ml-auto">
+                        {% if not user.is_authenticated %}
+                            <a href="{% url 'users:login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Get started</a>
+                        {% endif %} 
+                    </div>
+                    <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+                    </div>
+        
+                </div>
+            </div>
+        </header>
+    {% endblock  %}
+
+
+    {% block main %}
+    {% endblock  %}
+    
+    {% block messages %}
+        {% if messages %}
+        <div id="messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}       
+     {% endblock messages %}
+    
+    {% block footer %}
+        <footer class="site-footer">
+
+            <a href="#top" class="smoothscroll scroll-top">
+                <span class="icon-keyboard_arrow_up"></span>
+            </a>
+        
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <h3>Search Trending</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Graphic Design</a></li>
+                        <li><a href="#">Web Developers</a></li>
+                        <li><a href="#">Python</a></li>
+                        <li><a href="#">HTML5</a></li>
+                        <li><a href="#">CSS3</a></li>
+                    </ul>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <h3>Company</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Career</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <h3>Support</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    <h3>Contact Us</h3>
+                    <div class="footer-social">
+                        <a href="#"><span class="icon-facebook"></span></a>
+                        <a href="#"><span class="icon-twitter"></span></a>
+                        <a href="#"><span class="icon-instagram"></span></a>
+                        <a href="#"><span class="icon-linkedin"></span></a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    {% endblock  %}
+  
+  </div>
+
+    {% block script %}
+    <script src="{% static 'jobs/js/jquery.min.js' %}"></script>
+    <script src="{% static 'jobs/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'jobs/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'jobs/js/stickyfill.min.js' %}"></script>
+    <script src="{% static 'jobs/js/jquery.fancybox.min.js' %}"></script>
+    <script src="{% static 'jobs/js/jquery.easing.1.3.js' %}"></script>
+    
+    <script src="{% static 'jobs/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'jobs/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'jobs/js/owl.carousel.min.js' %}"></script>
+    
+    
+    <script src="{% static 'jobs/js/bootstrap-select.min.js' %}"></script>
+    {% endblock %}
+    {% block custom_script %}
+    <script src="{% static 'jobs/js/custom.js' %}"></script>
+    <script src="{% static 'users/js/customs/messages.js' %}"></script>
+
+    {% endblock  %}
+   
+     
+     
+        
+  </body>
+</html>
