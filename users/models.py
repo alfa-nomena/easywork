@@ -23,20 +23,20 @@ class Responsible(models.Model):
         ("O", "Others")
     ]
     PROVINCE_CHOICES = [
-        ("tana", "Antananarivo"),
-        ("diego", "Antsiranana"),
-        ("fianara", "Fianarantsoa"),
-        ("majunga", "Mahajanga"),
-        ("tamaga", "Toamasina"),
-        ("tulear", "Toliara")
+        ("antananarivo", "Antananarivo"),
+        ("anatsiranana", "Antsiranana"),
+        ("fianarantsoa", "Fianarantsoa"),
+        ("mahajanga", "Mahajanga"),
+        ("toamasina", "Toamasina"),
+        ("toliara", "Toliara")
     ]
     identifiant = models.CharField(blank=True, null=True, max_length=100)
     slug = models.SlugField(blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     sex = models.CharField(choices=SEX_CHOICES, max_length=100)
-    martial_status = models.CharField(choices=MARTIAL_STATUS_CHOICES, default="S", max_length=100, blank=True, null=True)
-    province = models.CharField(max_length=50, choices = PROVINCE_CHOICES)
-    picture = models.ImageField("Picture profile", upload_to='responsible/pictures', default='responsible/unknown.jpg')
+    martial_status = models.CharField(choices=MARTIAL_STATUS_CHOICES, default=MARTIAL_STATUS_CHOICES[0], max_length=100, blank=True)
+    province = models.CharField(max_length=50, choices = PROVINCE_CHOICES, default=PROVINCE_CHOICES[0], blank=True)
+    picture = models.ImageField("Picture profile", upload_to='candidates/pictures', default='candidates/pictures/unknown.jpg')
     confirmed_email = models.BooleanField(default=False, blank=True, null=True)
     birth = models.DateField(blank=True, null=True)
     adress = models.CharField(blank=True, null=True, max_length=100)
@@ -70,8 +70,8 @@ class Responsible(models.Model):
 class Candidate(Responsible):
     title = models.CharField(max_length=100, default="")
     description = models.TextField(null=True, blank=True)
-    cover_letter = models.FileField(upload_to="responsible/cover_letters", blank=True, null=True)
-    cv = models.FileField(upload_to="responsible/cv", blank=True, null=True)
+    cover_letter = models.FileField(upload_to="candidates/cover_letters", blank=True, null=True)
+    cv = models.FileField(upload_to="candidates/cv", blank=True, null=True)
     facebook = models.CharField(max_length=300, blank=True, null=True)
     google = models.CharField(max_length=300, blank=True, null=True)
     twitter = models.CharField(max_length=300, blank=True, null=True)

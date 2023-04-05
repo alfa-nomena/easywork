@@ -1,5 +1,5 @@
-uploads/jobs/*
-uploads/responsible/*
+uploads/*
+!uploads/candidates/pictures/unknown.jpg
 db.sqlite3
 easywork/__pycache__
 jobs/__pycache__

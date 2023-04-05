@@ -32,6 +32,8 @@ def home(request):
 
 def _create_fake_user():
     user = User.objects.create_user(username='test', password='test')
+    user.is_superuser = True
+    user.is_staff = True
     user.save()
     print(user.id, user.username, user.password)
     
