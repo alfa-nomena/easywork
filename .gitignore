@@ -1,3 +1,5 @@
+uploads/jobs/*
+uploads/responsible/*
 db.sqlite3
 easywork/__pycache__
 jobs/__pycache__

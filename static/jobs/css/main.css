@@ -264,7 +264,8 @@ width:150px;
 .social{
 margin:0;
 padding:50px 0;
-display:inline-block;
+display:flex;
+justify-content: space-evenly;
 width:100%;
 }
 .social li{
@@ -279,35 +280,35 @@ color:#6b797c;
 .social li:hover a, .social li:focus a{
 text-decoration:none;
 }
-a.facebook {
+li.facebook {
     border: 1px solid #295396;
     width: 90%;
     display: inline-block;
    padding: 4px 5px;
     border-radius: 50px;
 }
-a.google {
+li.google {
     border: 1px solid #d6201f;
     width: 90%;
     display: inline-block;
     padding: 4px 5px;
     border-radius: 50px;
 }
-a.twitter {
+li.twitter {
     border: 1px solid #1da0f2;
     width: 90%;
     display: inline-block;
     padding: 4px 5px;
     border-radius: 50px;
 }
-a.linkedin {
+li.linkedin {
     border: 1px solid #0077b5;
     width: 90%;
     display: inline-block;
     padding: 4px 5px;
     border-radius: 50px;
 }
-a.instagram {
+li.instagram {
     border: 1px solid #d3368c;
     width: 90%;
     display: inline-block;
@@ -324,19 +325,19 @@ a.instagram {
 	margin-right:7px;
 }
 
-.social li .facebook i{
+.social li.facebook i{
 background:#295396;
 }
-.social li .google i{
+.social li.google i{
 background:#d6201f;
 }
-.social li .twitter i{
+.social li.twitter i{
 background:#1da0f2;
 }
-.social li .linkedin i{
+.social li.linkedin i{
 background:#0077b5;
 }
-.social li .instagram i{
+.social li.instagram i{
 background:#d3368c;;
 }
 .panel {

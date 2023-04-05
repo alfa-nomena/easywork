@@ -63,6 +63,21 @@ class Responsible(models.Model):
     
     def get_absolute_url(self):
         return reverse("profile", kwargs={"slug": self.slug})
+
+
+    
+
 class Candidate(Responsible):
+    title = models.CharField(max_length=100, default="")
+    description = models.TextField(null=True, blank=True)
     cover_letter = models.FileField(upload_to="responsible/cover_letters", blank=True, null=True)
     cv = models.FileField(upload_to="responsible/cv", blank=True, null=True)
+    facebook = models.CharField(max_length=300, blank=True, null=True)
+    google = models.CharField(max_length=300, blank=True, null=True)
+    twitter = models.CharField(max_length=300, blank=True, null=True)
+    linkedin = models.CharField(max_length=300, blank=True, null=True)
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, null=True, blank=True)
+    
