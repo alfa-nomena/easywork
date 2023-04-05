@@ -30,6 +30,26 @@ class LoginForm(AuthenticationForm):
 
 
 class RegisterForm(UserCreationForm):
+    first_name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'First name',
+                'id': "uname",
+            }
+        )
+    )
+    last_name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Last name',
+                'id': "uname",
+            }
+        )
+    )
     username = forms.CharField(
         max_length=100,
         widget=forms.TextInput(
@@ -74,4 +94,4 @@ class RegisterForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', 'check',)
+        fields = ('first_name', 'last_name', 'username', 'password1', 'password2', 'check', )

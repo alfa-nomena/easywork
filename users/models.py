@@ -8,6 +8,9 @@ from django.template.defaultfilters import slugify
 
 
 class Responsible(models.Model):
+    class Meta:
+        abstract=True
+    
     SEX_CHOICES = [
         ("M", "Male"),
         ("F", "Female")
@@ -30,20 +33,18 @@ class Responsible(models.Model):
     identifiant = models.CharField(blank=True, null=True, max_length=100)
     slug = models.SlugField(blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    confirmed_email = models.BooleanField(default=False, blank=True, null=True)
-    picture = models.ImageField("Picture profile", upload_to='responsible/pictures', default='responsible/unknown.jpg')
-    birth = models.DateField(blank=True, null=True)
     sex = models.CharField(choices=SEX_CHOICES, max_length=100)
     martial_status = models.CharField(choices=MARTIAL_STATUS_CHOICES, default="S", max_length=100, blank=True, null=True)
+    province = models.CharField(max_length=50, choices = PROVINCE_CHOICES)
+    picture = models.ImageField("Picture profile", upload_to='responsible/pictures', default='responsible/unknown.jpg')
+    confirmed_email = models.BooleanField(default=False, blank=True, null=True)
+    birth = models.DateField(blank=True, null=True)
     adress = models.CharField(blank=True, null=True, max_length=100)
     adress2 = models.CharField(blank=True, null=True, max_length=100)
     city = models.CharField(blank=True, null=True, max_length=100)
-    province = models.CharField(max_length=50, choices = PROVINCE_CHOICES)
     mobile_number = models.CharField(blank=True, null=True, max_length=20)
     fixe_number = models.CharField(blank=True, null=True, max_length=20)
     last_update = models.DateTimeField(default=timezone.now, blank=True, null=True)
-    cover_letter = models.FileField(upload_to="responsible/cover_letters", blank=True, null=True)
-    cv = models.FileField(upload_to="responsible/cv", blank=True, null=True)
     
     def __str__(self):
         return f"{self.slug} | {self.user.username}"
@@ -54,11 +55,14 @@ class Responsible(models.Model):
     
     def save(self, *args, **kwargs):
         if self.identifiant is None:
-            slug = str(uuid4()).split("-")
-            self.identifiant = f"{''.join(slug[:2])}"
+            self.identifiant = str(uuid4()).split("-")[-1]
         
-        if self.slug is None:
-            self.slug = slugify(f"{self.user.username} {self.identifiant}")
+        self.slug = slugify(f"{self.user.username} {self.user.first_name} {self.user.last_name} {self.identifiant}")
         self.last_update = timezone.now()
-        return super().save(*args, **kwargs)
+        return super(Responsible, self).save(*args, **kwargs)
     
+    def get_absolute_url(self):
+        return reverse("profile", kwargs={"slug": self.slug})
+class Candidate(Responsible):
+    cover_letter = models.FileField(upload_to="responsible/cover_letters", blank=True, null=True)
+    cv = models.FileField(upload_to="responsible/cv", blank=True, null=True)

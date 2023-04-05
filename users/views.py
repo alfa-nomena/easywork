@@ -1,12 +1,16 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
 from .forms import LoginForm, RegisterForm
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
+from django.views.generic.detail import DetailView
+from .models import Candidate
+from django.utils.decorators import method_decorator
+
+
+
 
 def register(request):  # sourcery skip: extract-method
     template = 'users/register.html'
@@ -51,6 +55,17 @@ def terms(request):
     context = {}
     return render(request, template, context)
 
+
+class ProfileDetailView(DetailView):
+    model = Candidate
+    template_name = "users/profile.html"
+    
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    
+    
 @login_required
 def profile(request):
     template = 'users/profile.html'
