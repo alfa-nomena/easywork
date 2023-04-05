@@ -7,7 +7,7 @@ class LoginForm(AuthenticationForm):
         max_length=100,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control p_input',
+                'class': 'form-control input-lg',
                 'placeholder': 'Username',
                 'id': "uname",
             }
@@ -18,7 +18,7 @@ class LoginForm(AuthenticationForm):
         max_length=100,
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-control p_input',
+                'class': 'form-control input-lg',
                 'placeholder': 'Password',
                 'id': 'pass'
             }

@@ -1,3 +1,4 @@
+db.sqlite3
 easywork/__pycache__
 jobs/__pycache__
 jobs/migrations
