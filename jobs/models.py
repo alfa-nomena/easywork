@@ -24,7 +24,7 @@ class Job (models.Model):
     experiences = models.CharField(max_length=50, choices=EXPS)
     summary = models.TextField()
     requierements = models.TextField()
-    logo = models.ImageField(upload_to='job', null=True, blank=True, default='job/unknown.jpg')
+    logo = models.ImageField(upload_to='job', null=True, blank=True, default='jobs/pictures/unknown.jpg')
     date_created = models.DateTimeField(default=timezone.now)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     salary_min = models.IntegerField(default=0, blank=True, null=True)

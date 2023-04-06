@@ -251,7 +251,7 @@ padding:0;
 
 .information li{
 display:block;
-padding:10px 0;
+padding:5px 0;
 font-size:15.5;
 list-style:none;
 border-bottom:1px solid rgba(107,121,124,0.1);
@@ -259,12 +259,13 @@ border-bottom:1px solid rgba(107,121,124,0.1);
 .information li span{
 display: inline-block;
 font-weight:bold;
-width:150px;
+/*width:150px;*/
 }
 .social{
 margin:0;
 padding:50px 0;
 display:flex;
+align-items: center;
 justify-content: space-evenly;
 width:100%;
 }
@@ -282,35 +283,35 @@ text-decoration:none;
 }
 li.facebook {
     border: 1px solid #295396;
-    width: 90%;
+    width: 95%;
     display: inline-block;
-   padding: 4px 5px;
+    padding: 4px 5px;
     border-radius: 50px;
 }
 li.google {
     border: 1px solid #d6201f;
-    width: 90%;
+    width: 95%;
     display: inline-block;
     padding: 4px 5px;
     border-radius: 50px;
 }
 li.twitter {
     border: 1px solid #1da0f2;
-    width: 90%;
+    width: 95%;
     display: inline-block;
     padding: 4px 5px;
     border-radius: 50px;
 }
 li.linkedin {
     border: 1px solid #0077b5;
-    width: 90%;
+    width: 95%;
     display: inline-block;
     padding: 4px 5px;
     border-radius: 50px;
 }
 li.instagram {
     border: 1px solid #d3368c;
-    width: 90%;
+    width: 95%;
     display: inline-block;
     padding: 4px 5px;
     border-radius: 50px;

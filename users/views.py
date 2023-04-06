@@ -56,7 +56,7 @@ def terms(request):
     return render(request, template, context)
 
 
-class ProfileDetailView(DetailView):
+class DetailProfileView(DetailView):
     model = Candidate
     template_name = "users/profile.html"
     

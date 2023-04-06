@@ -5,8 +5,16 @@ from django.contrib.auth.models import User
 import numpy as np
 from django.utils import timezone
 from users.models import Candidate
+from django.views.generic.list import ListView
 
 
+
+class ListAllJobsView(ListView):
+    model=Job
+    paginate_by=20
+    template_name = 'jobs/list-all-jobs.html'
+    context_object_name='jobs'
+    
 
 
 def home(request):
@@ -25,10 +33,6 @@ def home(request):
     template = 'jobs/index.html'
     print(jobs[0].get_job_type_display())
     return render(request, template, context)
-
-
-
-
 
 def _create_fake_user():
     user = User.objects.create_user(username='test', password='test')
