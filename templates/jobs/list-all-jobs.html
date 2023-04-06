@@ -50,13 +50,15 @@
 							<div class="row">
 								<div class="col-md-2 col-sm-2">
 									<div class="company-logo">
-										<img src="img/google.png" class="img-responsive" alt="" />
+										<img src="{{ job.logo.url }}" class="img-responsive" alt="job.company" />
 									</div>
 								</div>
 								<div class="col-md-8 col-sm-8">
 									<div class="company-content">
-										<h3>Front-End developer</h3>
-										<p><span class="company-name"><i class="fa fa-briefcase"></i>Google</span><span class="company-location"><i class="fa fa-map-marker"></i> 7th Avenue, New York, NY, United States</span><span class="package"><i class="fa fa-money"></i>$25,000-$50,000</span></p>
+										<h3>{{ job.title }}</h3>
+										<p><span class="company-name"><i class="fa fa-briefcase"></i>{{ job.company }}</span><span class="company-location"><i class="fa fa-map-marker"></i>{{ job.location }}</span><span class="package"><i class="fa fa-money"></i>{{ job.salary }}</span></p>
+										<h4><span class="{{ job.job_type }}">{{ job.get_job_type_display }}</span></h4>
+										
 									</div>
 								</div>
 								<div class="col-md-2 col-sm-2">

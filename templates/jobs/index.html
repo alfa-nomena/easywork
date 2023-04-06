@@ -145,38 +145,31 @@
       <div class="companies">
         
 		{% for job in jobs %}
-			<div class="company-list">
-				<div class="row">
-				<div class="col-md-2 col-sm-2">
-					<div class="company-logo">
-					<img src="{{ job.logo.url }}" class="img-responsive" alt="{{ job.company }}" />
-					</div>
-				</div>
-				<div class="col-md-10 col-sm-10">
-					<div class="company-content">
-						<h3>{{ job.title }}<span class="{{ job.job_type }}">{{ job.get_job_type_display }}</span></h3>
-						<p>
-							<span class="company-name">
-								<i class="fa fa-briefcase"></i>{{ job.company }}
-							</span>
-							<span class="company-location">
-								<i class="fa fa-map-marker"></i> {{ job.location }}
-							</span>
-							{% if job.salary %}
-								<span class="package">
-									<i class="fa fa-money"></i>{{ job.salary }}
-								</span>
-							{% endif %}
-						</p>
-					</div>
-				</div>
-				</div>
-			</div>
+    <div class="company-list">
+      <div class="row">
+        <div class="col-md-2 col-sm-2">
+          <div class="company-logo">
+            <img src="{{ job.logo.url }}" class="img-responsive" alt="job.company" />
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-8">
+          <div class="company-content">
+            <h3>{{ job.title }}</h3>
+            <p><span class="company-name"><i class="fa fa-briefcase"></i>{{ job.company }}</span><span class="company-location"><i class="fa fa-map-marker"></i>{{ job.location }}</span><span class="package"><i class="fa fa-money"></i>{{ job.salary }}</span></p>
+            <h4><span class="{{ job.job_type }}">{{ job.get_job_type_display }}</span></h4>
+            
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <button type="submit" class="btn view-job" name="View Job">View Job</button>
+        </div>
+      </div>
+    </div>
 		{% endfor %}
 		
       </div>
       <div class="row">
-        <input type="button" class="btn brows-btn" value="Brows All Jobs" />
+        <a class="btn brows-btn" href="{% url 'jobs:list_all_jobs' %}">Show more jobs</a>
       </div>
     </div>
   </section>
@@ -309,7 +302,7 @@
         <div class="col-md-4 col-sm-4">
           <div class="left-widget-sidebar">
             <div class="card-widget bg-white user-card">
-              <div class="u-img img-cover" style="background-image: url(img/bg-1.jpg);background-size:cover;"></div>
+              <div class="u-img img-cover" style="background-image: url({% static 'jobs/img/bg-1.jpg' %});background-size:cover;"></div>
               <div class="u-content">
                 <div class="avatar box-80">
                   <img class="img-responsive img-circle img-70 shadow-white" src="{% static 'jobs/img/avatar3.jpg' %}" alt="">
@@ -333,7 +326,7 @@
         <div class="col-md-4 col-sm-4">
           <div class="left-widget-sidebar">
             <div class="card-widget bg-white user-card">
-              <div class="u-img img-cover" style="background-image: url(img/bg-2.jpg);background-size:cover;"></div>
+              <div class="u-img img-cover" style="background-image: url({% static 'jobs/img/bg-2.jpg' %});background-size:cover;"></div>
               <div class="u-content">
                 <div class="avatar box-80">
                   <img class="img-responsive img-circle img-70 shadow-white" src="{% static 'jobs/img/avatar2.jpg' %}" alt="">
@@ -357,7 +350,7 @@
         <div class="col-md-4 col-sm-4">
           <div class="left-widget-sidebar">
             <div class="card-widget bg-white user-card">
-              <div class="u-img img-cover" style="background-image: url(img/bg-3.jpg);background-size:cover;"></div>
+              <div class="u-img img-cover" style="background-image: url({% static 'jobs/img/bg-3.jpg' %});background-size:cover;"></div>
               <div class="u-content">
                 <div class="avatar box-80">
                   <img class="img-responsive img-circle img-70 shadow-white" src="{% static 'jobs/img/avatar1.jpg' %}" alt="">
