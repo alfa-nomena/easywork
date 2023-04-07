@@ -31,7 +31,7 @@ class Responsible(models.Model):
         ("toliara", "Toliara")
     ]
     identifiant = models.CharField(blank=True, null=True, max_length=100)
-    slug = models.SlugField(blank=True, null=True)
+    slug = models.SlugField(blank=True, null=True, max_length=200)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     sex = models.CharField(choices=SEX_CHOICES, max_length=100)
     martial_status = models.CharField(choices=MARTIAL_STATUS_CHOICES, default=MARTIAL_STATUS_CHOICES[0], max_length=100, blank=True)

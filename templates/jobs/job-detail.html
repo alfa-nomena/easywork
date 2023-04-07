@@ -1,0 +1,70 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %} {{ block.super }} find your next job {% endblock title %}
+{% block main %}
+	<section class="profile-detail">
+		<div class="container">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="basic-information">
+						<div class="row panel panel-default">
+							<div class="col-md-3 col-sm-3">
+								<img src="{{ job.logo.url }}" alt="Logo {{ job.company }}" class="img-responsive">
+							</div>
+						
+							<div class="col-md-9 col-sm-9">
+								<h3> REF : {{ job.identifiant }} <span class="{{ job.job_type }}">{{ job.get_job_type_display }}</span></h3>
+								<div class="profile-content">
+									<h2>{{ job.company }}<span>{{ job.title }}</span></h2>
+									<ul class="information">
+										<li><span>Address : </span>{{ job.location }}</li>
+										<li><span>Job type :</span>{{ job.get_job_type_display }}</li>
+										{% if job.salary %}
+											<li><span>Salary : </span> {{ job.salary }}</li>
+										{% endif %}
+										{% if job.deadline %}
+											<li><span>Deadline : </span>{{ job.deadline }}</li>
+										{% endif %}
+										<li><span>Publication : </span>{{ job.date_created }}</li>
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row panel panel-default">
+							<div class="panel-heading">
+								<i class="fa fa-leaf fa-fw"></i> Responsibilities:
+							</div>
+												<!-- /.panel-heading -->
+							<div class="panel-body">
+								<ul>
+									
+									{% for task in job.task_set.all %}
+										<li>{{ task.description }}</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+						
+						<div class="row panel panel-default">
+							<div class="panel-heading">
+								<i class="fa fa-coffee fa-fw"></i> Requirements:
+							</div>
+												<!-- /.panel-heading -->
+							<div class="panel-body">
+								<ul>
+									{% for requirement in job.requirement_set.all %}
+										<li>{{ requirement.description }}</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock main %}
+		

@@ -6,6 +6,7 @@ import numpy as np
 from django.utils import timezone
 from users.models import Candidate
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 
 
@@ -14,7 +15,10 @@ class ListAllJobsView(ListView):
     paginate_by=20
     template_name = 'jobs/list-all-jobs.html'
     context_object_name='jobs'
-    
+
+class DetailJobView(DetailView):
+    model = Job
+    template_name = "jobs/job-detail.html"
 
 
 def home(request):
@@ -55,8 +59,11 @@ def _create_fake_data():
         job.owner = user
         job.job_type = np.random.choice([job_type[0] for job_type in Job.JOBS_TYPE])
         job.experiences = f"lev{np.random.randint(1,5)}"
-        job.summary = faker.text(max_nb_chars = 2000)
-        job.requierements = faker.text(max_nb_chars = 2000)
         job.date_created = timezone.now()
         job.location = faker.street_address()
+        job.save()
+        for _ in range(np.random.randint(5,10)):
+            job.task_set.create(description = faker.text(100))
+            job.requirement_set.create(description = faker.text(100))
+            
         job.save()

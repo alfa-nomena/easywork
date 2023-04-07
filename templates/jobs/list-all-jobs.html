@@ -62,7 +62,7 @@
 									</div>
 								</div>
 								<div class="col-md-2 col-sm-2">
-									<button type="submit" class="btn view-job" name="View Job">View Job</button>
+									<a class="btn view-job" href="{% url 'jobs:detail_job' job.slug %}">View job detail</a>
 								</div>
 							</div>
 						</div>
