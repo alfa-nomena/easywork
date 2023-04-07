@@ -76,6 +76,7 @@ class Candidate(Responsible):
     google = models.CharField(max_length=300, blank=True, null=True)
     twitter = models.CharField(max_length=300, blank=True, null=True)
     linkedin = models.CharField(max_length=300, blank=True, null=True)
+    
 
 class Skill(models.Model):
     name = models.CharField(max_length=100)

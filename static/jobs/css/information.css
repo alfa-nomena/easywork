@@ -1,0 +1,7 @@
+.information tr{
+    border-bottom:1px solid rgba(107,121,124,0.1);
+    padding: 10px;
+}
+.information td{
+    padding: 10px;
+}

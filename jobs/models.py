@@ -1,7 +1,11 @@
 from django.db import models
-from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+from uuid import uuid4
+from django.template.defaultfilters import slugify
+
+
+
 
 class Job (models.Model):
     
@@ -17,6 +21,8 @@ class Job (models.Model):
         ('lev3', '5 to 10 years'),
         ('lev4', 'More than 10 years'),
     ]
+    identifiant = models.CharField(blank=True, null=True, max_length=100)
+    slug = models.SlugField(blank=True, null=True)
     title = models.CharField(max_length=50)
     company = models.CharField(max_length=100)
     location = models.CharField(max_length=200)
@@ -43,3 +49,10 @@ class Job (models.Model):
             if self.salary_max>self.salary_min:
                 salary += f" - {self.salary_max}"
         return salary
+
+    def save(self, *args, **kwargs):
+        if self.identifiant is None:
+            self.identifiant = str(uuid4()).split("-")[-1]
+        
+        self.slug = slugify(f"{self.company} {self.title} {self.identifiant}")
+        return super(Job, self).save(*args, **kwargs)

@@ -1,6 +1,10 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 {% block title %}Profile | {{ user.username|title }} {% endblock title %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'jobs/css/information.css' %}">
+{% endblock css %}
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 {% block main %}
     <section class="profile-detail">
@@ -8,30 +12,46 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="basic-information">
-                        <div class="col-md-3 col-sm-3">
-                            <img src="{{ candidate.picture.url }}" alt="" class="img-responsive">
-                        </div>
-                        <div class="col-md-9 col-sm-9">
-                            <div class="profile-content">
-                                <h2>{{ candidate.user.username }}<span>{{ candidate.title }}</span></h2>
-                                <p>Soft Techi Infoteck Pvt.</p>
-                                <ul class="information">
-                                    <li><span>Name:</span>{{ candidate.user.first_name|default:'' }} {{ candidate.user.last_name|default:'' }}</li>
-                                    {% if candidate.email %}
-                                        <li><span>Email:</span>{{ candidate.email }}</li>
-                                    {% endif %}
-                                    <li><span>Mobile:</span>{{ candidate.mobile_number|default:'' }}</li>
-                                    {% if candidate.fixe_number %}
-                                        <li><span>Fixe:</span>{{ candidate.fixe_number }}</li>
-                                    {% endif %}
-                                    <li><span>Date of Birth:</span>{{ candidate.birth|default:'' }}</li>
-                                </ul>
+                        <div class="row panel panel-default">
+                            <div class='container'>
+                                <div class="col-md-3 col-sm-3">
+                                    <img src="{{ candidate.picture.url }}" alt="" class="img-responsive">
+                                </div>
+                                <div class="col-md-9 col-sm-9">
+                                    <div class="profile-content">
+                                        <h2>{{ candidate.user.username }}<span>{{ candidate.title }}</span></h2>
+                                        <p>Soft Techi Infoteck Pvt.</p>
+                                        <table class="information">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Name</th><td>{{ candidate.user.first_name|default:'-' }} {{ candidate.user.last_name|default:'' }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Mobile</th><td>{{ candidate.mobile_number|default:'-' }}</td>
+                                                </tr>
+                                                {% if candidate.email %}
+                                                    <tr>
+                                                        <th>Email</th><td>{{ candidate.email }}</td>
+                                                    </tr>
+                                                {% endif %}
+                                                {% if candidate.fixe_number %}
+                                                    <tr>
+                                                        <th>Fixe</th><td>{{ candidate.fixe_number }}</td>
+                                                    </tr>
+                                                {% endif %}
+                                                <tr>
+                                                    <th>Date of Birth</th><td>{{ candidate.birth|default:'' }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
                         
                         
-                        <div class="panel panel-default">
+                        <div class="row panel panel-default">
                             <div class="panel-heading">
                                 <i class="fa fa-cog fa-fw"></i> Skills
                             </div>
@@ -41,7 +61,7 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <div class="panel panel-default">
+                        <div class="row panel panel-default">
                             <div class="panel-heading">
                                 <i class="fa fa-user fa-fw"></i> About Me
                             </div>
@@ -51,7 +71,7 @@
                                 <p>Pas de description</p>
                             {% endif %}
                         </div>
-                        <div class="panel panel-default">
+                        <div class="row panel panel-default">
                             <div class="panel-heading">
                                 <i class="fa fa-phone fa-fw"></i> Contacts
                             </div>
