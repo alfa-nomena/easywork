@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
 from .models import Candidate
 from django.utils.decorators import method_decorator
-
+from .models import Candidate
+from django.contrib.auth import login
 
 
 
@@ -19,6 +20,9 @@ def register(request):  # sourcery skip: extract-method
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
+            responsible = Candidate(user=user, sex="O")
+            responsible.save()
+            login(request, user)
             messages.success(request, "You have been registered successfuly")
             return redirect('jobs:home')
         else:

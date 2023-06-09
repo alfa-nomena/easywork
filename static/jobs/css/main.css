@@ -469,7 +469,7 @@ width: 100%;
 }
 .company-logo img{
 margin:0 auto;
-max-width:100px
+object-fit: fill;
 }
 .company-content h3{
 font-size:25px;

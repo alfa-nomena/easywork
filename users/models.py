@@ -13,7 +13,8 @@ class Responsible(models.Model):
     
     SEX_CHOICES = [
         ("M", "Male"),
-        ("F", "Female")
+        ("F", "Female"),
+        ('O', 'Other')
     ]
     MARTIAL_STATUS_CHOICES = [
         ("S", "Single"),

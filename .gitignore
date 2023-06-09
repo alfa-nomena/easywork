@@ -1,8 +1,4 @@
 uploads/*
-!uploads/candidates/pictures/unknown.jpg
 db.sqlite3
-easywork/__pycache__
-jobs/__pycache__
-jobs/migrations
-users/__pycache__
-users/migrations
+**/__pycache__
+**/migrations

@@ -7,14 +7,35 @@ from django.utils import timezone
 from users.models import Candidate
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-
+from .forms import SearchForm
 
 
 class ListAllJobsView(ListView):
     model=Job
-    paginate_by=20
+    paginate_by=50
     template_name = 'jobs/list-all-jobs.html'
     context_object_name='jobs'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if (kwargs.get('request')) and (kwargs.get('request').method=='POST'):
+            request = kwargs.get('request').POST
+            filters = {}
+            key_word = request.POST.get('key_word')
+            experience = request.POST.get('experience')
+            category = request.POST.get('category')
+            
+            if key_word!='':
+                filters['title']=key_word
+            if experience!='':
+                filters['experiences']=experience
+            if category!='':
+                filters['job_type']=category
+            jobs = Job.objects.filter(**filters)
+            if len(jobs)>20:
+                jobs = jobs[:20]
+            context['jobs']=jobs
+        return context
+    
 
 class DetailJobView(DetailView):
     model = Job
@@ -28,14 +49,16 @@ def home(request):
         _create_fake_data()
         jobs = Job.objects.all()
     context = {
-        "jobs":jobs[:5]
+        "jobs":jobs[:20],
+        'job_experiences':dict(Job.EXPERIENCES),
+        'job_categories':dict(Job.TYPES),
     }
     user = request.user
     if user.is_authenticated:
         if candidate := Candidate.objects.filter(user=user):
             context['candidate'] = candidate[0]
     template = 'jobs/index.html'
-    print(jobs[0].get_job_type_display())
+    context["search_form"]= SearchForm()
     return render(request, template, context)
 
 def _create_fake_user():

@@ -8,14 +8,13 @@ from django.template.defaultfilters import slugify
 
 
 class Job (models.Model):
-    
-    JOBS_TYPE = [
+    TYPES = [
         ('full-time', "Full time"),
         ('part-time', "Part time"),
         ('freelance', 'Freelance'),
         ('internship', 'Internship'),
     ]
-    EXPS = [
+    EXPERIENCES = [
         ('lev1', 'Less than 2 years'),
         ('lev2', '2 to 5 years'),
         ('lev3', '5 to 10 years'),
@@ -26,8 +25,8 @@ class Job (models.Model):
     title = models.CharField(max_length=50)
     company = models.CharField(max_length=100)
     location = models.CharField(max_length=200)
-    job_type = models.CharField(max_length=50, choices=JOBS_TYPE)
-    experiences = models.CharField(max_length=50, choices=EXPS)
+    job_type = models.CharField(max_length=50, choices=TYPES)
+    experiences = models.CharField(max_length=50, choices=EXPERIENCES)
     summary = models.TextField()
     requierements = models.TextField()
     logo = models.ImageField(upload_to='job', null=True, blank=True, default='jobs/pictures/unknown.jpg')
@@ -56,3 +55,7 @@ class Job (models.Model):
         
         self.slug = slugify(f"{self.company} {self.title} {self.identifiant}")
         return super(Job, self).save(*args, **kwargs)
+    
+    @staticmethod
+    def experiences_choices(self):
+        return self.EXPS
